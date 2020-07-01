@@ -38,3 +38,30 @@ function expectButtons(buttons, expectation) {
       total: "6",
       operation: "+",
     });
+
+    test(["6", "+", "6", "="], {
+        total: "12",
+      });
+    
+      test(["0", "0", "+", "0", "="], {
+        total: "0",
+      });
+    
+      test(["6", "+", "6", "=", "9"], {
+        next: "9",
+      });
+    
+      test(["3", "+", "6", "=", "+"], {
+        total: "9",
+        operation: "+",
+      });
+    
+      test(["3", "+", "6", "=", "+", "9"], {
+        total: "9",
+        operation: "+",
+        next: "9",
+      });
+    
+      test(["3", "+", "6", "=", "+", "9", "="], {
+        total: "18",
+      });
