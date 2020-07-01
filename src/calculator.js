@@ -90,4 +90,12 @@ export default function calculate(obj, buttonName) {
           // '=' with no operation, nothing to do
           return {};
         }
-      }    
+      }    if (buttonName === "+/-") {
+        if (obj.next) {
+          return { next: (-1 * parseFloat(obj.next)).toString() };
+        }
+        if (obj.total) {
+          return { total: (-1 * parseFloat(obj.total)).toString() };
+        }
+        return {};
+      }
