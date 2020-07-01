@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 import "./Button.css";
 
 export default class Button extends React.Component {
-    static propTypes = {
-      name: PropTypes.string,
-      red: PropTypes.bool,
-      wide: PropTypes.bool,
-      clickHandler: PropTypes.func,
-    };
-  
-    handleClick = () => {
-      this.props.clickHandler(this.props.name);
-    };
+  static propTypes = {
+    name: PropTypes.string,
+    orange: PropTypes.bool,
+    wide: PropTypes.bool,
+    clickHandler: PropTypes.func,
+  };
 
-    render() {
-        const className = [
-          "component-button",
-          this.props.red ? "red" : "",
-          this.props.wide ? "wide" : "",
-        ];
+  handleClick = () => {
+    this.props.clickHandler(this.props.name);
+  };
 
-        return (
-            <div className={className.join(" ").trim()}>
-              <button onClick={this.handleClick}>{this.props.name}</button>
-            </div>
-          );
-        }
-      }
+  render() {
+    const className = [
+      "component-button",
+      this.props.orange ? "orange" : "",
+      this.props.wide ? "wide" : "",
+    ];
+
+    return (
+      <div className={className.join(" ").trim()}>
+        <button onClick={this.handleClick}>{this.props.name}</button>
+      </div>
+    );
+  }
+}
