@@ -65,3 +65,84 @@ function expectButtons(buttons, expectation) {
       test(["3", "+", "6", "=", "+", "9", "="], {
         total: "18",
       });
+
+      // When '=' is pressed and there is not enough information to complete
+  // an operation, the '=' should be disregarded.
+  test(["3", "+", "=", "3", "="], {
+    total: "6",
+  });
+
+  test(["+"], {
+    operation: "+",
+  });
+
+  test(["+", "2"], {
+    next: "2",
+    operation: "+",
+  });
+
+  test(["+", "2", "+"], {
+    total: "2",
+    operation: "+",
+  });
+
+  test(["+", "2", "+", "+"], {
+    total: "2",
+    operation: "+",
+  });
+
+  test(["+", "2", "+", "5"], {
+    next: "5",
+    total: "2",
+    operation: "+",
+  });
+
+  test(["+", "2", "5"], {
+    next: "25",
+    operation: "+",
+  });
+
+  test(["+", "2", "5"], {
+    next: "25",
+    operation: "+",
+  });
+
+  test(["+", "6", "+", "5", "="], {
+    total: "11",
+  });
+
+  test(["0", ".", "4"], {
+    next: "0.4",
+  });
+
+  test([".", "4"], {
+    next: "0.4",
+  });
+
+  test([".", "4", "-", ".", "2"], {
+    total: "0.4",
+    next: "0.2",
+    operation: "-",
+  });
+
+  test([".", "4", "-", ".", "2", "="], {
+    total: "0.2",
+  });
+
+  // should clear the operator when AC is pressed
+  test(["1", "+", "2", "AC"], {});
+  test(["+", "2", "AC"], {});
+
+  test(["4", "%"], {
+    next: "0.04",
+  });
+
+  test(["4", "%", "x", "2", "="], {
+    total: "0.08",
+  });
+
+  test(["4", "%", "x", "2"], {
+    total: "0.04",
+    operation: "x",
+    next: "2",
+  });
