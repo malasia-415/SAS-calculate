@@ -119,3 +119,18 @@ export default function calculate(obj, buttonName) {
     };
   }
 
+  // no operation yet, but the user typed one
+
+  // The user hasn't typed a number yet, just save the operation
+  if (!obj.next) {
+    return { operation: buttonName };
+  }
+
+  // save the operation and shift 'next' into 'total'
+  return {
+    total: obj.next,
+    next: null,
+    operation: buttonName,
+  };
+}
+
