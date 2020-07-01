@@ -16,3 +16,25 @@ function pressButtons(buttons) {
   });
   return value;
 }
+
+function expectButtons(buttons, expectation) {
+    expect(pressButtons(buttons)).to.deep.equal(expectation);
+  }
+  
+  function test(buttons, expectation, only = false) {
+    const func = only ? it.only : it;
+    func(`buttons ${buttons.join(",")} -> ${JSON.stringify(expectation)}`, () => {
+      expectButtons(buttons, expectation);
+    });
+  }
+  
+  describe("calculate", function() {
+    test(["6"], { next: "6" });
+  
+    test(["6", "6"], { next: "66" });
+  
+    test(["6", "+", "6"], {
+      next: "6",
+      total: "6",
+      operation: "+",
+    });
