@@ -90,7 +90,9 @@ export default function calculate(obj, buttonName) {
           // '=' with no operation, nothing to do
           return {};
         }
-      }    if (buttonName === "+/-") {
+      }    
+
+      if (buttonName === "+/-") {
         if (obj.next) {
           return { next: (-1 * parseFloat(obj.next)).toString() };
         }
@@ -99,3 +101,21 @@ export default function calculate(obj, buttonName) {
         }
         return {};
       }
+
+       // Button must be an operation
+
+  // When the user presses an operation button without having entered
+  // a number first, do nothing.
+  // if (!obj.next && !obj.total) {
+  //   return {};
+  // }
+
+  // User pressed an operation button and there is an existing operation
+  if (obj.operation) {
+    return {
+      total: operate(obj.total, obj.next, obj.operation),
+      next: null,
+      operation: buttonName,
+    };
+  }
+
