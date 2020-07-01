@@ -21,3 +21,15 @@ export default function calculate(obj, buttonName) {
         operation: null,
       };
     }
+
+    if (isNumber(buttonName)) {
+        if (buttonName === "0" && obj.next === "0") {
+          return {};
+        }
+        // If there is an operation, update next
+        if (obj.operation) {
+          if (obj.next) {
+            return { next: obj.next + buttonName };
+          }
+          return { next: buttonName };
+        }
