@@ -67,3 +67,14 @@ export default function calculate(obj, buttonName) {
         }
         return {};
       }
+
+      if (buttonName === ".") {
+        if (obj.next) {
+          // ignore a . if the next number already has one
+          if (obj.next.includes(".")) {
+            return {};
+          }
+          return { next: obj.next + "." };
+        }
+        return { next: "0." };
+      }
